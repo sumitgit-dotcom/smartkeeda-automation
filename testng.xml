@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Smartkeeda Automation Suite" verbose="2" parallel="false">
+
+    <test name="Login Flow Test">
+        <classes>
+            <class name="com.smartkeeda.runners.RunCucumberTest"/>
+        </classes>
+    </test>
+
+</suite>
