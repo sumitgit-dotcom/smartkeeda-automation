@@ -28,4 +28,4 @@ Thumbs.db
 # Logs & Reports
 *.log
 test-output/
-reports/
+reports/ 

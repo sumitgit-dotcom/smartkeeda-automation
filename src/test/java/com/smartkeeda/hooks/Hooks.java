@@ -2,6 +2,7 @@ package com.smartkeeda.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,11 +20,10 @@ public class Hooks {
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         
-        // Detect if running in GitHub Actions
         boolean isCI = System.getenv("CI") != null;
         
         if (isCI) {
-            options.addArguments("--headless=new"); // Required for CI
+            options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--window-size=1920,1080");
@@ -32,9 +32,16 @@ public class Hooks {
         }
         
         options.addArguments("--disable-notifications");
+        options.addArguments("--disable-gpu");
+        
+        // THIS IS THE FIX: Tell Chrome not to wait for images/scripts to fully load
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER); 
         
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        
+        // Increase page load timeout to 60 seconds just in case
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+        
         DRIVER.set(driver);
         System.out.println(">>> Browser opened. CI Mode: " + isCI);
     }
