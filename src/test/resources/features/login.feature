@@ -19,3 +19,13 @@ Feature: Smartkeeda Authentication
       | confirm  | Sumitrawat@123      |
     And I click the final signup submit button
     Then I should be successfully registered or see a validation message
+    
+    @freemock
+  Scenario: Navigate Free Mock, select LIC AAO test, and print the result
+    Given I navigate to the Testzone homepage
+    When I click the Free Mock button
+    And I click on the "Full Length Test" tab
+    And I click the first card in the tabs wrapper
+    And I click on the LIC AAO Mock Test card
+    And I start the first test on the dashboard
+    Then I print the test results
