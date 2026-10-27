@@ -29,3 +29,13 @@ Feature: Smartkeeda Authentication
     And I click on the LIC AAO Mock Test card
     And I start the first test on the dashboard
     Then I print the test results
+    
+    
+    @speeddrill
+  Scenario: Navigate to Sectional, open Speed Drills, and start a drill
+    Given I navigate to the Testzone homepage
+    When I click on the "Sectional" link in the header
+    And I click on the "Speed Drills" link in the left pane
+    And I switch to the newly opened tab
+    And I click the "Start Drill" button on the drill card
+    Then I print the drill page title
