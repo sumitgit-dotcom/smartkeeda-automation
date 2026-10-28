@@ -39,3 +39,16 @@ Feature: Smartkeeda Authentication
     And I switch to the newly opened tab
     And I click the "Start Drill" button on the drill card
     Then I print the drill page title
+    
+    
+    
+        @buyplan
+  Scenario: Buy a plan and proceed to checkout as a guest
+    Given I navigate to the Testzone dashboard
+    When I click on the "Buy a Plan" link
+    And I click the "Select Plan" button on the first plan card
+    And I enter the checkout email from excel
+    And I click the password input wrapper
+    And I enter the password from excel in the checkout form
+    And I click the primary submit button
+    Then I print the checkout result
